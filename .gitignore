@@ -6,3 +6,5 @@ tags
 app/**/*.js
 app/global.d.ts
 platforms
+hooks
+app/App_Resources
