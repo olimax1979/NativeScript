@@ -1,0 +1,16 @@
+.title {
+    font-size: 30;
+    font-weight: bold;
+    horizontal-align: left;
+    margin: 0;
+}
+
+/* Sub titles are a bit smaller */
+.sub-title {
+    font-size: 15;
+    font-weight: bold;
+    horizontal-align: left;
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: justify;
+}
