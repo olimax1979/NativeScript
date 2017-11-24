@@ -18,7 +18,6 @@ import { DrawerPage } from '../shared/drawer/drawer.page';
     constructor(
         private changeDetectorRef:ChangeDetectorRef,
         private leaderservice: LeaderService,
-        private route: ActivatedRoute,
         @Inject('BaseURL') private BaseURL) {
           super(changeDetectorRef);
         }

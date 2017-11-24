@@ -3,6 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { AppRoutingModule } from "./app.routing";
 import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { AppComponent } from "./app.component";
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DrawerComponent } from "./shared/drawer/drawer.component";
@@ -27,6 +28,8 @@ import { baseURL } from './shared/baseurl';
         AppRoutingModule,
         NativeScriptHttpModule,
         NativeScriptUISideDrawerModule,
+        TNSFontIconModule.forRoot({
+            'fa': './fonts/font-awesome.min.css',})
     ],
     declarations: [
         AppComponent,

@@ -30,11 +30,11 @@
                 <ListView [items]="leaders" class="list-group" *ngIf="leaders">
                     <ng-template let-leader="item">
                         <StackLayout orientation="horizontal" class="list-group-item">
-                            <Image row="0" col="0" rowSpan="3" height="70" width="70"  [src]="BaseURL + leader.image" class="img-circle"></Image>
+                            <Image row="0" col="0" rowSpan="3" height="70" width="70"  [src]="BaseURL + leader.image" class="thumb img-circle"></Image>
                             <StackLayout class="list-group-item" rows="auto *" columns="*">
                                 <Label class="title"  [text]="leader.name" class="list-group-item-heading"></Label>
                                     <Label class="list-group-item-text" [text]="leader.designation"></Label>
-                                    <Label class="list-group-item-text" [text]="leader.description"></Label>   
+                                    <Label class="list-group-item-text" [text]="leader.description" textWrap="true"></Label>   
                             </StackLayout>
                         </StackLayout>
                     </ng-template>
