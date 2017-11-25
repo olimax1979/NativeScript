@@ -55,4 +55,8 @@ export class DishdetailComponent implements OnInit {
             toast.show();
           }
         }
+
+        goBack(): void {
+          this.routerExtensions.back();
+        }
 }
