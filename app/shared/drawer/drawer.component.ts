@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
 import { login, LoginResult } from "ui/dialogs";
 import { getString, setString } from "application-settings";
 
