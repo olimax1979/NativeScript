@@ -9,6 +9,7 @@ import { View } from 'ui/core/view';
 import { confirm } from "ui/dialogs";
 import { Toasty } from 'nativescript-toasty';
 
+
 @Component({
     selector: 'app-favorites',
     moduleId: module.id,
