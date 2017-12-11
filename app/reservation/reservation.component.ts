@@ -22,7 +22,7 @@ export class ReservationComponent extends DrawerPage implements OnInit {
 
     res: any[];
 
-    reservations: Array<string>;
+    reservations: Array<any>;
     docId: string = "reservations";
 
     reserveTable: FormGroup;
@@ -40,13 +40,13 @@ export class ReservationComponent extends DrawerPage implements OnInit {
             super(changeDetectorRef);
 
             this.reserveTable = this.formBuilder.group({
-                guests: 3,
+                guests: 2,
                 smoking: false,
                 dateTime: ['', Validators.required]
             });
             this.res = [];
             this.reservations = [];
-
+            
             let doc = this.couchbaseService.getDocument(this.docId);
             if( doc == null) {
                 this.couchbaseService.createDocument({"reservations": []}, this.docId);
@@ -84,13 +84,23 @@ export class ReservationComponent extends DrawerPage implements OnInit {
     }
 
     onSubmit() {
+        let reservation = this.reserveTable.value;
         
-        this.res.push(this.reserveTable.value);
-        this.animateLeft();
-        //console.log(this.res);
-        //console.log(JSON.stringify(newArray));
-        //console.log(Object.keys(this.res));
-        //console.log(JSON.stringify(this.reserveTable.value));
+        this.res.push(reservation);
+        this.reservations.push(reservation);
+        
+        if (this.reservations.length == 1) {
+            console.log("This is the first reservation");
+            this.couchbaseService.updateDocument(this.docId, {"reservations": this.reservations});
+            console.log(JSON.stringify(this.couchbaseService.getDocument(this.docId)));
+        }
+        else {
+            this.couchbaseService.updateDocument(this.docId, {"reservations": this.reservations});
+            console.log(JSON.stringify(this.couchbaseService.getDocument(this.docId)));
+        }
+        
+        this.animateReservations();
+        
     }
 
     onBackReserve() {
@@ -105,7 +115,7 @@ export class ReservationComponent extends DrawerPage implements OnInit {
         })
     }
 
-    animateLeft() { 
+    animateReservations() { 
         
             
               this.reservationForm = this.page.getViewById<View>('reservationForm');
