@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { login, LoginResult } from "ui/dialogs";
-import { getString, setString } from "application-settings";
+
 
 @Component({
     selector: 'drawer-content',
@@ -11,22 +10,5 @@ export class DrawerComponent {
     constructor() {
     }
 
-    displayLoginDialog() {
-        let options = {
-            title: "Login",
-            message: 'Type Your Login Credentials',
-            userName: getString("userName", ""),
-            password: getString("password",""),
-            okButtonText: "Login",
-            cancelButtonText: "Cancel"
-        }
-
-        login(options)
-            .then((loginResult: LoginResult) => {
-                setString("userName", loginResult.userName);
-                setString("password", loginResult.password);
-            },
-            () => { console.log('Login cancelled'); 
-        });
-    }
+    
 }
