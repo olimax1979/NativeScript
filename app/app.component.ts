@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { TNSFontIconService } from 'nativescript-ngx-fonticon';
+import { PlatformService } from './services/platform.service'; 
 
 @Component({
     selector: "ns-app",
@@ -7,7 +8,25 @@ import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 })
 
 
-export class AppComponent {
-
-    constructor(private fonticon: TNSFontIconService) { }
- }
+export class AppComponent implements OnInit, OnDestroy { 
+    
+      constructor(private platformService: PlatformService) { } 
+      
+      ngOnInit() { 
+        this.platformService.printPlatformInfo(); 
+        this.platformService.startMonitoringNetwork()
+        .subscribe((message: string) => {
+          console.log(message); 
+          
+        });
+        
+        
+      } 
+      
+      ngOnDestroy() { 
+        
+        this.platformService.stopMonitoringNetwork(); 
+        
+      } 
+      
+    }
