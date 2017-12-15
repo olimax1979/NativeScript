@@ -5,12 +5,16 @@ import { getString, setString } from 'application-settings';
 import { RouterExtensions } from 'nativescript-angular/router';
 import * as camera from 'nativescript-camera';
 import { Image } from 'ui/image';
+import * as imagepicker from 'nativescript-imagepicker';
+import { ImageSource, fromAsset } from "image-source";
 
 @Component({
     moduleId: module.id,
     templateUrl: './userauth.component.html'
 })
 export class UserAuthComponent implements OnInit {
+
+    imag: string = '/Users/oliverhaack/NativeScript/conFusion/app/images/logo.png';
 
     loginForm: FormGroup;
     registerForm: FormGroup;
@@ -34,6 +38,8 @@ export class UserAuthComponent implements OnInit {
             email: ['', Validators.required]                
         });
 
+        this.imag = '/Users/oliverhaack/NativeScript/conFusion/app/images/logo.png';
+
     }
 
         ngOnInit() {
@@ -49,11 +55,47 @@ export class UserAuthComponent implements OnInit {
                     camera.takePicture(options)
                         .then((imageAsset) => {
                             let image = <Image>this.page.getViewById<Image>('myPicture');
+                            
                             image.src = imageAsset;
+                            console.log(imageAsset);
                         })
                         .catch((err) => console.log('Error -> ' + err.message));
                 }
         
+            }
+
+            getFromLibrary() {
+                let context = imagepicker.create({
+                    mode: "single"
+                });
+
+                context
+                .authorize()
+                .then(function() {
+                    return context.present();
+                })
+                
+                .then((selection) => {
+                    selection.forEach((selected) => {
+                        selected.getImage().then(
+                            (image) => {
+                    let img = <Image>this.page.getViewById<Image>('myPicture');
+                    img.imageSource = image;
+                    //return image;
+                }
+                
+            );
+            
+        });
+                    
+                    //this.imag = selection;
+                    
+                    })
+                
+                    
+                    .catch((err) => console.log('Error -> ' + err.message));
+                
+
             }
         
             register() {

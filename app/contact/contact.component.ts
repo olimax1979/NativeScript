@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 import * as Email from 'nativescript-email';
+import * as Phone from 'nativescript-phone';
 
 import { DrawerPage } from '../shared/drawer/drawer.page';
 
@@ -38,5 +39,10 @@ import { DrawerPage } from '../shared/drawer/drawer.page';
               else
                 console.log('No Email Configured');
             })
-  }
+    }
+
+    callRestaurant() {
+
+      Phone.dial('+852 1234 5678', true);
+    }
 }
